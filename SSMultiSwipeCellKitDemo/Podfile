@@ -1,0 +1,20 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'SSMultiSwipeCellKitDemo' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for SSMultiSwipeCellKitDemo
+  pod 'SSMultiSwipeCellKit', :path => '../'
+
+  target 'SSMultiSwipeCellKitDemoTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'SSMultiSwipeCellKitDemoUITests' do
+    # Pods for testing
+  end
+
+end
