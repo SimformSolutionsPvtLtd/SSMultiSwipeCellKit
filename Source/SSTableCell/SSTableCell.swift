@@ -33,7 +33,7 @@ open class SSTableCell: UITableViewCell {
     private var trailingMovingView = UIView()
     private var bounceBackOnCompletion = CGFloat(8)
     private var viewsTobeRemoved = [UIView]()
-    private var leadinSwipeActions: [SSSwipeAction]?
+    private var leadingSwipeActions: [SSSwipeAction]?
     private var trailingSwipeActions: [SSSwipeAction]?
 
     private func addPanSwipeGestureRecognizer() {
@@ -47,6 +47,11 @@ open class SSTableCell: UITableViewCell {
             addGestureRecognizer(gesture)
         }
         
+    }
+    
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        uninstallMovingView()
     }
     
     override open func didMoveToSuperview() {
@@ -63,12 +68,14 @@ open class SSTableCell: UITableViewCell {
         }
     }
     
+    
+    
     @objc private func gesture(_ gestureRecognizer: UIPanGestureRecognizer) {
         tableView?.gesture(gestureRecognizer)
     }
     
     internal func slideCellAndActions(leading: Bool, translationX: CGFloat) {
-        guard let actions = leading ? leadinSwipeActions : trailingSwipeActions else { return }
+        guard let actions = leading ? leadingSwipeActions : trailingSwipeActions else { return }
         let totalActions = actions.count
         let movingView = leading ? leadingMovingView : trailingMovingView
         if totalActions == 0 {
@@ -82,7 +89,7 @@ open class SSTableCell: UITableViewCell {
     }
     
     internal func slideActionsBack(leading: Bool) {
-        guard let actions = leading ? leadinSwipeActions : trailingSwipeActions else { return }
+        guard let actions = leading ? leadingSwipeActions : trailingSwipeActions else { return }
         let totalActions = actions.count
         let movingView = leading ? leadingMovingView : trailingMovingView
         if totalActions < 0 {
@@ -101,7 +108,7 @@ open class SSTableCell: UITableViewCell {
     }
     
     internal func slideBackActionsWithEfect(leading: Bool, index: Int) {
-        guard let actions = leading ? leadinSwipeActions : trailingSwipeActions else { return }
+        guard let actions = leading ? leadingSwipeActions : trailingSwipeActions else { return }
         let totalActions = actions.count
         let movingView = leading ? leadingMovingView : trailingMovingView
         if totalActions == 0 {
@@ -122,7 +129,7 @@ open class SSTableCell: UITableViewCell {
     }
     
     internal func spanOneAction(leadingAction: Bool, index: Int, translationX: CGFloat, velocity: CGPoint) {
-        guard let actions = leadingAction ? leadinSwipeActions : trailingSwipeActions else { return }
+        guard let actions = leadingAction ? leadingSwipeActions : trailingSwipeActions else { return }
         let totalActions = actions.count
         let movingView = leadingAction ? leadingMovingView : trailingMovingView
         var indexToSpan = index
@@ -135,7 +142,7 @@ open class SSTableCell: UITableViewCell {
             movingView.transform = CGAffineTransform(translationX: translationX, y: 0)
             for i in 0..<totalActions {
                 if i == indexToSpan {
-                    let actionIndicatorTransformation = leadingAction ? translationX > actions[i].actionIndicatorViewSize ? actions[i].actionIndicatorViewSize : translationX : translationX > -actions[i].actionIndicatorViewSize ? translationX : -actions[i].actionIndicatorViewSize
+                    let actionIndicatorTransformation = leadingAction ? translationX > actions[i].actionIndicatorViewSize+actions[i].actionIndicatorIconOffset ? actions[i].actionIndicatorViewSize+actions[i].actionIndicatorIconOffset : translationX-actions[i].actionIndicatorIconOffset : translationX > -actions[i].actionIndicatorViewSize-actions[i].actionIndicatorIconOffset ? translationX+actions[i].actionIndicatorIconOffset : -actions[i].actionIndicatorViewSize-actions[i].actionIndicatorIconOffset
                     movingView.backgroundColor = actions[i].backgroundColor
                     actions[i].actionIndicatorView.transform = CGAffineTransform(translationX: actionIndicatorTransformation, y: 0)
                     actions[i].actionIndicatorView.alpha = 1
@@ -149,9 +156,9 @@ open class SSTableCell: UITableViewCell {
     }
     
     internal func completionHandler(indexPaths: Set<IndexPath>,index: Int, leading: Bool) {
-        guard let actions = leading ? leadinSwipeActions : trailingSwipeActions else { return }
+        guard let actions = leading ? leadingSwipeActions : trailingSwipeActions else { return }
         let totalActions = actions.count
-        if totalActions == 0 {
+        if totalActions == 0 || indexPaths.isEmpty {
             return
         }
         var indexToCall = index
@@ -164,7 +171,7 @@ open class SSTableCell: UITableViewCell {
     internal func revealSwpieOptions(leading: Bool, velocity: CGPoint) {
         let uniformWidthToreveal = 60
         let movingView = leading ? leadingMovingView : trailingMovingView
-        guard let actions = leading ? leadinSwipeActions : trailingSwipeActions else { return }
+        guard let actions = leading ? leadingSwipeActions : trailingSwipeActions else { return }
         let totalActions = actions.count
         if totalActions == 0 {
             return
@@ -191,7 +198,7 @@ open class SSTableCell: UITableViewCell {
         addSubview(movingContentView)
         
         if let actions = delegate.leadingSwipeActions(tableView, leadingSwipeActionsConfigurationForRowAt: indexPath)?.actions {
-            leadinSwipeActions = actions
+            leadingSwipeActions = actions
             addSubview(leadingMovingView)
             viewsTobeRemoved.append(leadingMovingView)
             for i in 0..<actions.count {
@@ -219,7 +226,7 @@ open class SSTableCell: UITableViewCell {
             }
         }
         
-        leadinSwipeActions = nil
+        leadingSwipeActions = nil
         trailingSwipeActions = nil
         self.addSubview(self.contentView)
     }

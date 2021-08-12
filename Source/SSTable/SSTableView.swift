@@ -23,8 +23,8 @@ open class SSTableView: UITableView {
     private var previousChangeInLocation = CGPoint()
 
     var firstSwipeThreshold = CGFloat(0)
-    var secondSwipeThreshold = CGFloat(30)
-    var thirdSwipeThreshold = CGFloat(60)
+    public var secondSwipeThreshold = CGFloat(40)
+    public var thirdSwipeThreshold = CGFloat(70)
     
     private var locationInTableView =  CGPoint()
     private var locationInParentView =  CGPoint()
@@ -34,6 +34,7 @@ open class SSTableView: UITableView {
     private var xSwipePercentage = CGFloat()
     private var ySwipePercentage = CGFloat()
     private var maxIndex = -1
+    private var leadinActions: Bool = true
 
     private var indexPaths = Set<IndexPath>()
     private let completionEndDelay = 0.6
@@ -65,8 +66,17 @@ open class SSTableView: UITableView {
                 }
                 previousIndexPaths = Set<IndexPath>()
                 previousChangeInLocation = locationInTableView
+                leadinActions = translationInTableView.x > 0
                 
             case .changed:
+                
+                if (swipeFirstContactPointInTableView.x > locationInTableView.x && leadinActions) {
+                    slideCellsBack(leading: true, indexPaths: previousIndexPaths)
+                    break
+                } else if (swipeFirstContactPointInTableView.x < locationInTableView.x && !leadinActions) {
+                    slideCellsBack(leading: false, indexPaths: previousIndexPaths)
+                    break
+                }
 
                 if xSwipePercentage < -thirdSwipeThreshold {
                     /// trailing options
@@ -86,16 +96,10 @@ open class SSTableView: UITableView {
                 } else if xSwipePercentage >= -firstSwipeThreshold && xSwipePercentage < 0 {
                     /// trailing options
                     /// reveal
-//                    indexPaths.insert(swipeFirstContactIndexPath)
-//                    slideCellsBack(leading: false, indexPaths: previousIndexPaths.subtracting(indexPaths))
-//                    slideCellsWithActions(leading: false, translationX: translationInTableView.x, indexPaths: indexPaths)
                     
                 } else if xSwipePercentage >= 0 && xSwipePercentage < firstSwipeThreshold {
                     /// leading options
                     /// reveal
-//                    indexPaths.insert(swipeFirstContactIndexPath)
-//                    slideCellsBack(leading: true, indexPaths: previousIndexPaths.subtracting(indexPaths))
-//                    slideCellsWithActions(leading: true, translationX: translationInTableView.x, indexPaths: indexPaths)
                     
                 } else if xSwipePercentage >= firstSwipeThreshold && xSwipePercentage < secondSwipeThreshold {
                     /// leading options
@@ -114,7 +118,7 @@ open class SSTableView: UITableView {
                 previousIndexPaths = indexPaths
                 previousChangeInLocation = locationInTableView
    
-                
+                /// Commented code for scrolling with selecting
 //                if locationInParentView.y >= (self.bounds.maxY * (100 - downScrollThreshold) / 100)  {
 //                    if let indexPath = self.indexPathForRow(at: locationInParentView) {
 //                        if indexPath.row < maxIndex {
@@ -131,11 +135,17 @@ open class SSTableView: UITableView {
                 
             case .ended:
                 
-                if (velocity.x < 0 && translationInParentView.x > 0) {
+                if ( (swipeFirstContactPointInTableView.x > locationInTableView.x && leadinActions) || (velocity.x < 0 && leadinActions ) ) {
                     slideCellsBack(leading: true, indexPaths: previousIndexPaths)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + completionEndDelay) {
+                        self.uninstallMovingViews()
+                    }
                     break
-                } else if (velocity.x > 0 && translationInParentView.x < 0) {
+                } else if ( (swipeFirstContactPointInTableView.x < locationInTableView.x && !leadinActions) || (velocity.x > 0 && !leadinActions )) {
                     slideCellsBack(leading: false, indexPaths: previousIndexPaths)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + completionEndDelay) {
+                        self.uninstallMovingViews()
+                    }
                     break
                 }
 
@@ -160,24 +170,10 @@ open class SSTableView: UITableView {
                 } else if xSwipePercentage >= -firstSwipeThreshold && xSwipePercentage < 0 {
                     /// trailing options
                     /// reveal
-//                    if let cell = self.cellForRow(at: swipeFirstContactIndexPath) as? SSTableCell {
-//                        if velocity.x < 0 {
-//                            cell.revealSwpieOptions(leading: false, velocity: velocity)
-//                        } else {
-//                            cell.slideActionsBack(leading: false)
-//                        }
-//                    }
-
+                    
                 } else if xSwipePercentage >= 0 && xSwipePercentage < firstSwipeThreshold {
                     /// leading options
                     /// reveal
-//                    if let cell = self.cellForRow(at: swipeFirstContactIndexPath) as? SSTableCell {
-//                        if velocity.x > 0 {
-//                            cell.revealSwpieOptions(leading: true, velocity: velocity)
-//                        } else {
-//                            cell.slideActionsBack(leading: true)
-//                        }
-//                    }
                     
                 } else if xSwipePercentage >= firstSwipeThreshold && xSwipePercentage < secondSwipeThreshold {
                     /// leading options

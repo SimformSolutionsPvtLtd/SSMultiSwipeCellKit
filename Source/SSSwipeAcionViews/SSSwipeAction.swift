@@ -21,6 +21,7 @@ public class SSSwipeAction: NSObject {
     private var imageViewWidth: CGFloat!
     public var actionIndicatorViewSize = CGFloat(50)
     var actionIndicatorView = UIView()
+    public var actionIndicatorIconOffset = CGFloat(6)
 
     public init(image: UIImage?, text: String?, completion: SSSwipeActionCompletion?) {
         self.image = image
@@ -71,7 +72,7 @@ public class SSSwipeAction: NSObject {
     private func addConstraintToActionIndicatorView(leading: Bool, cell: SSTableCell) {
         actionIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         
-        let actionIndicatorViewHorizontalConstraint = NSLayoutConstraint(item: actionIndicatorView, attribute: leading ? .leading : .trailing, relatedBy: .equal, toItem: cell, attribute: leading ? .leading : .trailing, multiplier: 1, constant: leading ? -actionIndicatorViewSize : actionIndicatorViewSize)
+        let actionIndicatorViewHorizontalConstraint = NSLayoutConstraint(item: actionIndicatorView, attribute: leading ? .leading : .trailing, relatedBy: .equal, toItem: cell, attribute: leading ? .leading : .trailing, multiplier: 1, constant: leading ? -actionIndicatorViewSize + actionIndicatorIconOffset : actionIndicatorViewSize - actionIndicatorIconOffset)
         let actionIndicatorViewVerticalConstraint = NSLayoutConstraint(item: actionIndicatorView, attribute: .centerY, relatedBy: .equal, toItem: cell, attribute: .centerY, multiplier: 1, constant: 0)
         let actionIndicatorViewWidthConstraint = NSLayoutConstraint(item: actionIndicatorView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: actionIndicatorViewSize)
         let actionIndicatorViewHeightConstraint = NSLayoutConstraint(item: actionIndicatorView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: actionIndicatorViewSize)
