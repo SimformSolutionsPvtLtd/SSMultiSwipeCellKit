@@ -66,7 +66,7 @@ open class SSTableView: UITableView {
                 }
                 previousIndexPaths = Set<IndexPath>()
                 previousChangeInLocation = locationInTableView
-                leadinActions = translationInTableView.x > 0
+                leadinActions = gestureRecognizer.velocity(in: self).x > 0
                 
             case .changed:
                 
