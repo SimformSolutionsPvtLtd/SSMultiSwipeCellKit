@@ -117,21 +117,6 @@ open class SSTableView: UITableView {
                 }
                 previousIndexPaths = indexPaths
                 previousChangeInLocation = locationInTableView
-   
-                /// Commented code for scrolling with selecting
-//                if locationInParentView.y >= (self.bounds.maxY * (100 - downScrollThreshold) / 100)  {
-//                    if let indexPath = self.indexPathForRow(at: locationInParentView) {
-//                        if indexPath.row < maxIndex {
-//                            scrollToRow(at: IndexPath(row: indexPath.row + 1, section: indexPath.section), at: .bottom, animated: true)
-//                        }
-//                    }
-//                } else if  locationInParentView.y < (self.frame.minY * upScrollThreshold / 100)  {
-//                    if let indexPath = self.indexPathForRow(at: locationInParentView) {
-//                        if indexPath.row > 0 {
-//                            scrollToRow(at: IndexPath(row: indexPath.row - 1, section: indexPath.section), at: .top, animated: true)
-//                        }
-//                    }
-//                }
                 
             case .ended:
                 

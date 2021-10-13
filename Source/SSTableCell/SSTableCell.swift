@@ -68,8 +68,6 @@ open class SSTableCell: UITableViewCell {
         }
     }
     
-    
-    
     @objc private func gesture(_ gestureRecognizer: UIPanGestureRecognizer) {
         tableView?.gesture(gestureRecognizer)
     }
