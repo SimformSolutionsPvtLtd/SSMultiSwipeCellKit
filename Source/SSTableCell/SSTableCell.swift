@@ -15,17 +15,19 @@ public protocol SSTableCellDelegate {
 
 open class SSTableCell: UITableViewCell {
     
-    private var tableView: SSTableView?
-    private var indexPath: IndexPath? {
-        get {
-            tableView?.indexPath(for: self)
-        }
-    }
+    // MARK: Public variables
+    
     public var delegate: SSTableCellDelegate? {
         didSet {
             addPanSwipeGestureRecognizer()
         }
     }
+
+    // MARK: Private variables
+    
+    internal var leadingSwipeActions: [SSSwipeAction]?
+    internal var trailingSwipeActions: [SSSwipeAction]?
+    private var tableView: SSTableView?
     private var mutliSelectRecognizer: UIPanGestureRecognizer?
     private let panDelegate = SSPanController()
     private var movingContentView = UIView()
@@ -33,9 +35,11 @@ open class SSTableCell: UITableViewCell {
     private var trailingMovingView = UIView()
     private var bounceBackOnCompletion = CGFloat(8)
     private var viewsTobeRemoved = [UIView]()
-    private var leadingSwipeActions: [SSSwipeAction]?
-    private var trailingSwipeActions: [SSSwipeAction]?
-
+    private var indexPath: IndexPath? {
+        get {
+            tableView?.indexPath(for: self)
+        }
+    }
     private func addPanSwipeGestureRecognizer() {
         if let gesture = mutliSelectRecognizer {
             self.removeGestureRecognizer(gesture)
@@ -51,6 +55,7 @@ open class SSTableCell: UITableViewCell {
     
     open override func awakeFromNib() {
         super.awakeFromNib()
+        self.clipsToBounds  = true // need this as if table view is in grouped insets then added subvies needs to be clipped to the cell
         uninstallMovingView()
     }
     

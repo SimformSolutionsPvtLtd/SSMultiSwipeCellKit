@@ -9,23 +9,25 @@ import UIKit
 
 open class SSTableView: UITableView {
     
+    // MARK: Public variables
+    
+    public let firstSwipeThreshold = CGFloat(0)
+    public var secondSwipeThreshold = CGFloat(40)
+    public var thirdSwipeThreshold = CGFloat(70)
+    public var cellDetectionPrecesion = 2 // pixels
+    
+    // MARK: Private variables
+    
     private var swipeFirstContactPointInTableView = CGPoint()
     private var swipeFirstContactPointInParentView = CGPoint()
     private var swipeFirstContactIndexPath = IndexPath(row: 0, section: 0)
     private var previousIndexPaths = Set<IndexPath>()
     private var selectedIndexPaths = Set<IndexPath>()
-    private var cellDetectionPrecesion = 2 // pixels
     private var percentCellHeighDragDown = CGFloat(30)
     private var percentCellHeighDragUp = CGFloat(70)
     private var downScrollThreshold = CGFloat(30)
     private var upScrollThreshold = CGFloat(30)
-
     private var previousChangeInLocation = CGPoint()
-
-    var firstSwipeThreshold = CGFloat(0)
-    public var secondSwipeThreshold = CGFloat(40)
-    public var thirdSwipeThreshold = CGFloat(70)
-    
     private var locationInTableView =  CGPoint()
     private var locationInParentView =  CGPoint()
     private var translationInTableView =  CGPoint()
@@ -35,7 +37,6 @@ open class SSTableView: UITableView {
     private var ySwipePercentage = CGFloat()
     private var maxIndex = -1
     private var leadinActions: Bool = true
-
     private var indexPaths = Set<IndexPath>()
     private let completionEndDelay = 0.6
 
@@ -122,15 +123,11 @@ open class SSTableView: UITableView {
                 
                 if ( (swipeFirstContactPointInTableView.x > locationInTableView.x && leadinActions) || (velocity.x < 0 && leadinActions ) ) {
                     slideCellsBack(leading: true, indexPaths: previousIndexPaths)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + completionEndDelay) {
-                        self.uninstallMovingViews()
-                    }
+                    self.uninstallMovingViews()
                     break
                 } else if ( (swipeFirstContactPointInTableView.x < locationInTableView.x && !leadinActions) || (velocity.x > 0 && !leadinActions )) {
                     slideCellsBack(leading: false, indexPaths: previousIndexPaths)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + completionEndDelay) {
-                        self.uninstallMovingViews()
-                    }
+                    self.uninstallMovingViews()
                     break
                 }
 
@@ -178,9 +175,7 @@ open class SSTableView: UITableView {
                     slideCellsBackWithEffect(leading: true, index: 0)
                     self.callCompletionHandlers(indexPaths: self.previousIndexPaths, index: 0, leading: true)
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + completionEndDelay) {
-                    self.uninstallMovingViews()
-                }
+                self.uninstallMovingViews()
 
             case .possible, .cancelled, .failed:
                     break
@@ -241,7 +236,7 @@ open class SSTableView: UITableView {
         let steps = ySwipePercentage > 0 ? -cellDetectionPrecesion : cellDetectionPrecesion
         let locationsToCheck = Array(stride(from: locationInTableView.y, through: swipeFirstContactPointInTableView.y, by: CGFloat(steps)))
         for location in locationsToCheck {
-            if let indexPath = self.indexPathForRow(at: CGPoint(x: 10, y: location)) {
+            if let indexPath = self.indexPathForRow(at: CGPoint(x: self.frame.midX, y: location)) {
                 indexPaths.insert(indexPath)
             }
         }
@@ -275,9 +270,14 @@ open class SSTableView: UITableView {
     }
     
     private func uninstallMovingViews() {
-        for index in getAllIndexPath() {
-            if let cell = self.cellForRow(at: index) as? SSTableCell {
-                cell.uninstallMovingView()
+        self.isUserInteractionEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + completionEndDelay) { [weak self] in
+            guard let `self` = self else { return }
+            self.isUserInteractionEnabled = true
+            for index in self.getAllIndexPath() {
+                if let cell = self.cellForRow(at: index) as? SSTableCell {
+                    cell.uninstallMovingView()
+                }
             }
         }
     }
