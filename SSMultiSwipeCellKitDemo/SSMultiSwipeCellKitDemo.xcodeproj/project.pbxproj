@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C012F892750FEEF0078DD5C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C012F882750FEEF0078DD5C /* R.generated.swift */; };
+		1C012F8F275103380078DD5C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C012F8E275103380078DD5C /* Constants.swift */; };
+		1C012F922751056C0078DD5C /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C012F902751056C0078DD5C /* TableCell.swift */; };
+		1C012F932751056C0078DD5C /* TableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C012F912751056C0078DD5C /* TableCell.xib */; };
+		1C012F96275108C30078DD5C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C012F98275108C30078DD5C /* Localizable.strings */; };
+		1C012F9A275110A60078DD5C /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C012F99275110A60078DD5C /* Data.swift */; };
+		1C012F9C275135D30078DD5C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C012F9B275135D30078DD5C /* Colors.xcassets */; };
 		1C05C5BC26C406EB005919F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05C5BB26C406EB005919F1 /* AppDelegate.swift */; };
 		1C05C5BE26C406EB005919F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05C5BD26C406EB005919F1 /* SceneDelegate.swift */; };
 		1C05C5C026C406EB005919F1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05C5BF26C406EB005919F1 /* ViewController.swift */; };
@@ -15,7 +22,6 @@
 		1C05C5C826C406EC005919F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C05C5C626C406EC005919F1 /* LaunchScreen.storyboard */; };
 		1C05C5D326C406EC005919F1 /* SSMultiSwipeCellKitDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05C5D226C406EC005919F1 /* SSMultiSwipeCellKitDemoTests.swift */; };
 		1C05C5DE26C406EC005919F1 /* SSMultiSwipeCellKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05C5DD26C406EC005919F1 /* SSMultiSwipeCellKitDemoUITests.swift */; };
-		1C05C5FD26C40C33005919F1 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05C5FC26C40C33005919F1 /* TableViewCell.swift */; };
 		7DE8C077F24293986F163F5F /* Pods_SSMultiSwipeCellKitDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BB824FFBC144345225E688 /* Pods_SSMultiSwipeCellKitDemoTests.framework */; };
 		AD916EDBF51E964146A7BA39 /* Pods_SSMultiSwipeCellKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C064DB9F7858E28B9A01216E /* Pods_SSMultiSwipeCellKitDemo.framework */; };
 		B6EFA0BCEC59E5B0A6B83EAD /* Pods_SSMultiSwipeCellKitDemo_SSMultiSwipeCellKitDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC19C4646DA74DCC882B94F9 /* Pods_SSMultiSwipeCellKitDemo_SSMultiSwipeCellKitDemoUITests.framework */; };
@@ -39,6 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C012F882750FEEF0078DD5C /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		1C012F8E275103380078DD5C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1C012F902751056C0078DD5C /* TableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
+		1C012F912751056C0078DD5C /* TableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableCell.xib; sourceTree = "<group>"; };
+		1C012F97275108C30078DD5C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1C012F99275110A60078DD5C /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		1C012F9B275135D30078DD5C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		1C05C5B826C406EB005919F1 /* SSMultiSwipeCellKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSMultiSwipeCellKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C05C5BB26C406EB005919F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C05C5BD26C406EB005919F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,7 +66,6 @@
 		1C05C5D926C406EC005919F1 /* SSMultiSwipeCellKitDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSMultiSwipeCellKitDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C05C5DD26C406EC005919F1 /* SSMultiSwipeCellKitDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSMultiSwipeCellKitDemoUITests.swift; sourceTree = "<group>"; };
 		1C05C5DF26C406EC005919F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1C05C5FC26C40C33005919F1 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		21A3EA0C56665DE96DE39201 /* Pods-SSMultiSwipeCellKitDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSMultiSwipeCellKitDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-SSMultiSwipeCellKitDemoTests/Pods-SSMultiSwipeCellKitDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		26E97072BF63871257F91973 /* Pods-SSMultiSwipeCellKitDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSMultiSwipeCellKitDemoTests.release.xcconfig"; path = "Target Support Files/Pods-SSMultiSwipeCellKitDemoTests/Pods-SSMultiSwipeCellKitDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		38C46F9FD1D5855F3DE9F039 /* Pods-SSMultiSwipeCellKitDemo-SSMultiSwipeCellKitDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSMultiSwipeCellKitDemo-SSMultiSwipeCellKitDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-SSMultiSwipeCellKitDemo-SSMultiSwipeCellKitDemoUITests/Pods-SSMultiSwipeCellKitDemo-SSMultiSwipeCellKitDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -118,6 +130,7 @@
 		1C05C5BA26C406EB005919F1 /* SSMultiSwipeCellKitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				1C012F882750FEEF0078DD5C /* R.generated.swift */,
 				1C05C5BB26C406EB005919F1 /* AppDelegate.swift */,
 				1C05C5BD26C406EB005919F1 /* SceneDelegate.swift */,
 				1C05C5BF26C406EB005919F1 /* ViewController.swift */,
@@ -125,7 +138,12 @@
 				1C05C5C426C406EC005919F1 /* Assets.xcassets */,
 				1C05C5C626C406EC005919F1 /* LaunchScreen.storyboard */,
 				1C05C5C926C406EC005919F1 /* Info.plist */,
-				1C05C5FC26C40C33005919F1 /* TableViewCell.swift */,
+				1C012F8E275103380078DD5C /* Constants.swift */,
+				1C012F902751056C0078DD5C /* TableCell.swift */,
+				1C012F912751056C0078DD5C /* TableCell.xib */,
+				1C012F98275108C30078DD5C /* Localizable.strings */,
+				1C012F99275110A60078DD5C /* Data.swift */,
+				1C012F9B275135D30078DD5C /* Colors.xcassets */,
 			);
 			path = SSMultiSwipeCellKitDemo;
 			sourceTree = "<group>";
@@ -179,6 +197,7 @@
 			buildConfigurationList = 1C05C5E226C406EC005919F1 /* Build configuration list for PBXNativeTarget "SSMultiSwipeCellKitDemo" */;
 			buildPhases = (
 				AD05BEB7B003300C3EF0A4B1 /* [CP] Check Pods Manifest.lock */,
+				1C012F872750FB3B0078DD5C /* ShellScript */,
 				1C05C5B426C406EB005919F1 /* Sources */,
 				1C05C5B526C406EB005919F1 /* Frameworks */,
 				1C05C5B626C406EB005919F1 /* Resources */,
@@ -279,9 +298,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C012F96275108C30078DD5C /* Localizable.strings in Resources */,
 				1C05C5C826C406EC005919F1 /* LaunchScreen.storyboard in Resources */,
 				1C05C5C526C406EC005919F1 /* Assets.xcassets in Resources */,
+				1C012F9C275135D30078DD5C /* Colors.xcassets in Resources */,
 				1C05C5C326C406EB005919F1 /* Main.storyboard in Resources */,
+				1C012F932751056C0078DD5C /* TableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +340,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SSMultiSwipeCellKitDemo-SSMultiSwipeCellKitDemoUITests/Pods-SSMultiSwipeCellKitDemo-SSMultiSwipeCellKitDemoUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		1C012F872750FB3B0078DD5C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
 		};
 		22D15F4BFBB93431722FDF28 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -410,9 +451,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C05C5C026C406EB005919F1 /* ViewController.swift in Sources */,
-				1C05C5FD26C40C33005919F1 /* TableViewCell.swift in Sources */,
+				1C012F892750FEEF0078DD5C /* R.generated.swift in Sources */,
+				1C012F922751056C0078DD5C /* TableCell.swift in Sources */,
+				1C012F9A275110A60078DD5C /* Data.swift in Sources */,
 				1C05C5BC26C406EB005919F1 /* AppDelegate.swift in Sources */,
 				1C05C5BE26C406EB005919F1 /* SceneDelegate.swift in Sources */,
+				1C012F8F275103380078DD5C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +492,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1C012F98275108C30078DD5C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C012F97275108C30078DD5C /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		1C05C5C126C406EB005919F1 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
