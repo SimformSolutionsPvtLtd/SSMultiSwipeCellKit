@@ -64,7 +64,7 @@ $ pod install
 |--|
 | ![](screenshots/sstableview.png) |
 
-2. Confirm the SSTableCellDelegate methods and you are good to go 👍
+2. Confirm the SSTableCellDelegate methods
 ```swift
 extension ViewController: SSTableCellDelegate {
     
@@ -104,6 +104,18 @@ extension ViewController: SSTableCellDelegate {
     }
     
 }
+```
+
+3. Set the cell delegate as self and you are good to go 👍
+```swift
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = table.dequeueReusableCell(withIdentifier: AppIdentifiers.tableCell.identifier, for: indexPath) as? TableCell else {
+            return UITableViewCell()
+        }
+        cell.configureCell(data: tableItems[indexPath.row])
+        cell.delegate = self
+        return cell
+    }
 ```
 
 # How to customize swipe action threshold values :

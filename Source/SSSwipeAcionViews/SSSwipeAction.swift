@@ -11,18 +11,28 @@ import UIKit
 
 public class SSSwipeAction: NSObject {
     
-    var completion: SSSwipeActionCompletion? = nil
+    // MARK: Public variables
+    
+    public var actionIndicatorIconOffset: CGFloat!
     public var backgroundColor: UIColor?
+    public var actionIndicatorViewSize: CGFloat!
+    
+    // MARK: Internal variables
+    
+    internal var completion: SSSwipeActionCompletion? = nil
+    internal var actionIndicatorView = UIView()
+    
+    // MARK: Private variables
+    
     private var label: UILabel?
     private var imageView: UIImageView?
     private let image: UIImage?
     private let text: String?
     private var imageViewHeight: CGFloat!
     private var imageViewWidth: CGFloat!
-    public var actionIndicatorViewSize = CGFloat(50)
-    var actionIndicatorView = UIView()
-    public var actionIndicatorIconOffset = CGFloat(6)
-
+    
+    // MARK: init
+    
     public init(image: UIImage?, text: String?, completion: SSSwipeActionCompletion?) {
         self.image = image
         self.text = text
@@ -30,11 +40,15 @@ public class SSSwipeAction: NSObject {
     }
     
     func makeView(makeforLeading: Bool, emptyView: UIView, for cell: SSTableCell) -> UIView {
-
-        imageViewHeight = cell.frame.height*2 / 3
-        imageViewWidth = imageViewHeight
         actionIndicatorView = UIView()
-        actionIndicatorViewSize = cell.frame.height
+        if actionIndicatorViewSize == nil {
+            actionIndicatorViewSize = cell.frame.height / 2
+        }
+        if actionIndicatorIconOffset == nil {
+            actionIndicatorIconOffset = actionIndicatorViewSize / 5
+        }
+        imageViewHeight = actionIndicatorViewSize * 2 / 3
+        imageViewWidth = actionIndicatorViewSize * 2 / 3
         emptyView.frame = makeforLeading ? CGRect(x: -(2*cell.frame.width), y: 0, width: 2*cell.frame.width, height: cell.frame.height) : CGRect(x: cell.frame.width, y: 0, width: 2*cell.frame.width, height: cell.frame.height)
         
         cell.addSubview(actionIndicatorView)
@@ -106,8 +120,8 @@ public class SSSwipeAction: NSObject {
         
         let labelHorizontalConstraint = NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: actionIndicatorView, attribute: .centerX, multiplier: 1, constant: 0)
         let labelVerticalConstraint = NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: actionIndicatorView, attribute: .centerY, multiplier: 1, constant: 0)
-        let labelWidthConstraint = NSLayoutConstraint(item: label, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: cell.frame.height)
-        let labeleHeightConstraint = NSLayoutConstraint(item: label, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: cell.frame.height)
+        let labelWidthConstraint = NSLayoutConstraint(item: label, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: actionIndicatorViewSize)
+        let labeleHeightConstraint = NSLayoutConstraint(item: label, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: actionIndicatorViewSize)
         
         NSLayoutConstraint.activate([labelHorizontalConstraint, labelVerticalConstraint, labelWidthConstraint, labeleHeightConstraint])
     }

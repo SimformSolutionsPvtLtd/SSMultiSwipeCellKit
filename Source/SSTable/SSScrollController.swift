@@ -10,6 +10,6 @@ import UIKit
 class SSScrollController: NSObject, UIScrollViewDelegate {
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        print("ended")
+        debugPrint("ended")
     }
 }
