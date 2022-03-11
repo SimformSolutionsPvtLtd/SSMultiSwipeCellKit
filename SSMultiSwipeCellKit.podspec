@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
 
   spec.name         = "SSMultiSwipeCellKit"
   spec.version      = "0.0.1"
-  spec.summary      = "A short description of SSMultiSwipeCellKit."
+  spec.summary      = "Muti Cell selection for UITableView with sliding animation"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,10 +25,10 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
-                    This is a easy to use framework to build tableViews with multi swipe configurations
+                    SSMultiSwipeCellKit provides feature for UITableView to select multiple cell at once with beautiful sliding animations.
                    DESC
 
-  spec.homepage     = "http://EXAMPLE/SSMultiSwipeCellKit"
+  spec.homepage     = "https://github.com/SimformSolutionsPvtLtd/SSMultiSwipeCellKit"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -81,8 +81,8 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  # spec.source       = { :git => "http://EXAMPLE/SSMultiSwipeCellKit.git", :tag => "#{spec.version}" }
-  spec.source       = { :http => 'file:' + __dir__ + "/" }
+  spec.source       = { :git => "https://github.com/SimformSolutionsPvtLtd/SSMultiSwipeCellKit.git", :tag => "#{spec.version}" }
+  # spec.source       = { :http => 'file:' + __dir__ + "/" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -93,6 +93,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
+  spec.swift_versions = ['5.0']
   spec.source_files  = "Source/**/*"
   # spec.exclude_files = "Classes/Exclude"
 
