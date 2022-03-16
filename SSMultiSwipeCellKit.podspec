@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SSMultiSwipeCellKit"
-  spec.version      = "0.0.1"
+  spec.version      = "1.0.0"
   spec.summary      = "Muti Cell selection for UITableView with sliding animation"
 
   # This description is used to generate tags and improve search results.

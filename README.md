@@ -58,7 +58,7 @@ $ pod install
 [Carthage][carthage-link] is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate SSMultiSwipeCellKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "SimformSolutionsPvtLtd/SSMultiSwipeCellKit" ~> 0.0.1
+github "SimformSolutionsPvtLtd/SSMultiSwipeCellKit" ~> 1.0.0
 ```
 Run `carthage update --use-xcframeworks` to build the framework and drage the built SSMultiSwipeCellKit.framework into your Xcode project.
 
@@ -70,7 +70,7 @@ Once you have your Swift package set up, adding SSMultiSwipeCellKit as a depende
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/SimformSolutionsPvtLtd/SSMultiSwipeCellKit.git", .upToNextMajor(from: "0.0.1"))
+    .package(url: "https://github.com/SimformSolutionsPvtLtd/SSMultiSwipeCellKit.git", .upToNextMajor(from: "1.0.0"))
 ]
 ```
 
