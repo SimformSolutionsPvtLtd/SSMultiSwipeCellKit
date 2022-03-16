@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  SSMultiSwipeCellKitDemo
+
+  Created by Nishchal Visavadiya on 26/11/21.
+  
+*/
+
+"SSMultiSwipeCellKitDemo"   = "SSMultiSwipeCellKitDemo";
+
+
+"Queue"                     = "Queue";
+"Select"                    = "Select";
+"Remove"                    = "Remove";
+"Snooze"                    = "Snooze";
+
+"Ok"                        = "Ok";
+"Cancel"                    = "Cancel";
+"Rows Will be Deleted"      = "%d Rows Will be Deleted";
+"Ary you sure?"             = "Ary you sure?";
+"Rows Marked"               = "%d Rows Marked";
+"Rows Selected"             = "%d Rows Selected";
+"Rows Archived"             = "%d Rows Archived";
+"Rows Queued"               = "%d Rows Queued";
+"Rows Snoozed"              = "%d Rows Snoozed";
